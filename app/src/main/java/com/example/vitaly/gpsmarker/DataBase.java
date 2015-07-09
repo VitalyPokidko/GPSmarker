@@ -76,6 +76,7 @@ public class DataBase {
 
     // удалить запись из DB_TABLE
     public void delRec(long id) {
+
         mDB.delete(DB_TABLE, COLUMN_ID + " = " + id, null);
     }
 

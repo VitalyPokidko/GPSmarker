@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     final int MENU_EDT = 1;
-    final int MENU_DEL = 2;    
+
 
     // Метод создания контексного меню
     @Override
@@ -101,14 +101,32 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreateContextMenu(menu, view, menuInfo);
 
         menu.add(menu.NONE, MENU_EDT, menu.NONE, "Редактировать");
-        menu.add(menu.NONE, MENU_DEL, menu.NONE, "Удалить");
+        menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
     }
 
+    private static final int CM_DELETE_ID = 11;
     // Метод обработки нажатия на пункты контекстного меню
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        return super.onContextItemSelected(item);
+       // return super.onContextItemSelected(item);
+
+        if (item.getItemId() == CM_DELETE_ID) {
+
+            // получаем из пункта контекстного меню данные по пункту списка
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+            // извлекаем id записи и удаляем соответствующую запись в БД
+            db.delRec(acmi.id);
+
+            // обновляем курсор
+            cursor.requery();
+
+            return true ;
+        }
+        return super .onContextItemSelected(item);
+
     }
+
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {

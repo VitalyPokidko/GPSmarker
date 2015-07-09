@@ -11,5 +11,6 @@
     <string name="txt_lat">Координаты</string>
     <string name="txt_sts">Cатус GPS</string>
 
+    <string name= "delete_record" >Удалить запись</string>
 
 </resources>
