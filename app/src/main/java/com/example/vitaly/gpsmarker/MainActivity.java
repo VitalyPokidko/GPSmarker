@@ -92,15 +92,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    final int MENU_EDT = 1;
-
-
     // Метод создания контексного меню
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, view, menuInfo);
 
-        menu.add(menu.NONE, MENU_EDT, menu.NONE, "Редактировать");
         menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
     }
 
