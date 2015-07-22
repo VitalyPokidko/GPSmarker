@@ -12,5 +12,6 @@
     <string name="txt_sts">Cатус GPS</string>
 
     <string name= "delete_record" >Удалить запись</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
