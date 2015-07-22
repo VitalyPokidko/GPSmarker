@@ -98,18 +98,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreateContextMenu(menu, view, menuInfo);
 
         menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+        menu.add(0, CM_SHOW_ID, 0, R.string.show_record);
     }
 
     private static final int CM_DELETE_ID = 11;
+    private static final int CM_SHOW_ID = 12;
     // Метод обработки нажатия на пункты контекстного меню
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-       // return super.onContextItemSelected(item);
 
-        if (item.getItemId() == CM_DELETE_ID) {
+        // получаем из пункта контекстного меню данные по пункту списка
+        AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
-            // получаем из пункта контекстного меню данные по пункту списка
-            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()){
+
+            case CM_DELETE_ID:
 
             // извлекаем id записи и удаляем соответствующую запись в БД
             db.delRec(acmi.id);
@@ -117,7 +120,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // обновляем курсор
             cursor.requery();
 
-            return true ;
+                break;
+
+            case CM_SHOW_ID :
+
+            String [] message = db.getPoint(acmi.id);
+
+                String name = message [1];
+                String latitude = message [2].split(" ")[0];
+                String longitude = message [2].split(" ")[1];
+
+            Intent intent = new Intent(this,MapsActivity.class);
+
+                intent.putExtra("name", name);
+                intent.putExtra("lat", latitude);
+                intent.putExtra("lon", longitude);
+
+                startActivity(intent);
+
+                break;
         }
         return super .onContextItemSelected(item);
 

@@ -62,6 +62,22 @@ public class DataBase {
         mDB.insert(DB_TABLE, null, cv);
     }
 
+    //получить данные об одной точке в виде массива строк {id,name,loc}
+    public String [] getPoint (long id){
+
+        Cursor cursor = mDB.query(DB_TABLE,new String[]{COLUMN_ID,COLUMN_NAME,COLUMN_LOC},COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)},null,null,null,null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+        }
+
+        String [] point = new String[] {cursor.getString(0), cursor.getString(1),cursor.getString(2)};
+        cursor.close();
+        return point;
+    }
+
     // редактировать запись в DB_TABLE
     public void editRec(long id,String name, String loc) {
 

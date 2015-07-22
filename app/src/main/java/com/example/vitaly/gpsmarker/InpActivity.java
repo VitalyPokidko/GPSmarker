@@ -6,8 +6,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +20,6 @@ public class InpActivity extends ActionBarActivity implements View.OnClickListen
 
     Button btn_sv;
     Button btn_gps;
-
-    //public String mode = "insert";
 
     public final static String MARK_INPUT = "name";
 
@@ -109,7 +105,7 @@ public class InpActivity extends ActionBarActivity implements View.OnClickListen
 
             if (location == null) return "";
 
-            return String.format("lat = %1$.4f, lon = %2$.4f", location.getLatitude(), location.getLongitude());
+            return String.format(" %1$.4f %2$.4f ", location.getLatitude(), location.getLongitude());
         }
     };
 
@@ -144,27 +140,6 @@ public class InpActivity extends ActionBarActivity implements View.OnClickListen
         }
 
     }
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inp, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }
 
 
